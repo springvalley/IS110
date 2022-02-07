@@ -10,6 +10,10 @@ public class Item
        this.weight = weight;
     }
     
+    public Item(String name){
+        this.name = name;
+    }
+    
     public void setName(String name){
         this.name = name;
     }
