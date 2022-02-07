@@ -1,56 +1,52 @@
-import java.util.*;
-public class Shop
-{
-   private ArrayList<Item> inventory;
-   private Item item1;
-   private Item item2;
-   private Item item3;
-   
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Shop{
+    
+    private ArrayList<Item> shopItems;
    public Shop(){
-        inventory = new ArrayList<>();
-        item1 = new Item("Kopp", 10, 3);
-        item2 = new Item("Pute", 15, 2);
-        item3 = new Item("Bok", 25, 3);
-        addItem(item1);
-        addItem(item2);
-        addItem(item3);
+        shopItems = new ArrayList<>();
+        
+        for(int i = 0; i < 10; i++){
+            addItem(new Item("item" + i));
+        }
+       printInventory();
+      
     }
     
     public void printInventory(){
-        for(Item i : inventory){
-            System.out.println(i.getName());
-        }
+          for(Item i : shopItems){
+                System.out.println(i.getName());
+            }
     }
     
     public void addItem(Item item){
-        inventory.add(item);
+           shopItems.add(item);
     }
     
     public Item getItem(String itemName){
-        int index = 0;
-        boolean found = false;
-        Item itemToReturn = null;
-        while(index < inventory.size() && !found){
-            Item i = inventory.get(index);
-            if(i.getName().equals(itemName)){
-                itemToReturn = i;
-                found = true;
-            }else{
-                index++;
+           int index = 0;
+           boolean found = false;
+           Item itemtoReturn = null;
+           while(index < shopItems.size() && !found){
+                Item i = shopItems.get(index);
+                if(i.getName().equals(itemName)){
+                    itemtoReturn = i;
+                    found = true;
+                }else{
+                    index++;
+                }
+               
             }
-        }
-        
-        return itemToReturn;
+         return itemtoReturn;
     }
     
     public void removeItem(Item item){
-        Iterator<Item> it = inventory.iterator();
+        Iterator<Item> it = shopItems.iterator();
         while(it.hasNext()){
-            Item i = it.next();
-            String itemName = i.getName();
-            if(itemName.equals(item.getName())){
-                it.remove();
-            }
-        }
+             if(it.next().getName().equals(item.getName())){
+                    it.remove();
+                }   
+        }     
     }
 }
